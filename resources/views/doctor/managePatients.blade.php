@@ -59,7 +59,13 @@
                                                         <td>{{ $patientByDoctor->PatientGender }}</td>
                                                         <td>{{ date('d-m-Y', strtotime($patientByDoctor->created_at)) }}
                                                         </td>
-                                                        <td>{{ date('d-m-Y', strtotime($patientByDoctor->updated_at)) }}
+
+                                                        @if ($patientByDoctor->created_at != $patientByDoctor->updated_at)
+                                                            <td>{{ date('d-m-Y', strtotime($patientByDoctor->updated_at)) }}
+                                                            @else
+                                                            <td>
+                                                        @endif
+
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('edit_patient', $patientByDoctor->id) }}"><i
@@ -88,6 +94,6 @@
 
 
         </div>
-    
+
         <!-- end: MAIN JAVASCRIPTS -->
     @endsection
